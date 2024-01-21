@@ -125,6 +125,14 @@ footer {
  .samuraitravel-search-form {
      max-width: 300px;
  }
+ 
+.samuraitravel-rating {
+  color: #ff9529;
+}
+
+.form-select[name="rating"] {
+  color: #ff9529 !important;
+}
 
 @media screen and (min-width: 1400px) {
   .samuraitravel-container {
