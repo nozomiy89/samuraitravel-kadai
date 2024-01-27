@@ -48,12 +48,16 @@ public class ReviewController {
 	
 	@GetMapping("/register")
 	public String register(@PathVariable(name = "houseId") Integer houseId, Model model) {
+		House house = houseRepository.getReferenceById(houseId);
+		
+		model.addAttribute("house" , house);
 		model.addAttribute("reviewRegisterForm", new ReviewRegisterForm());
 		return "/reviews/register";
 	}
 	
 	@PostMapping("/create")
-	public String create(@PathVariable(name = "houseId") Integer houseId, @ModelAttribute @Validated ReviewRegisterForm reviewRegisterForm, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+	public String create(@ModelAttribute @Validated ReviewRegisterForm reviewRegisterForm, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+		
 		if (bindingResult.hasErrors()) {
 			return "/reviews/register";
 		}
@@ -65,7 +69,7 @@ public class ReviewController {
 	}
 	
 	@GetMapping("/{reviewId}/edit")
-	public String editReview(@PathVariable(name = "houseId") Integer houseId, @PathVariable(name = "reviewId") Integer reviewId, Model model) {
+	public String editReview(Integer houseId, @PathVariable(name = "reviewId") Integer reviewId, Model model) {
 		Review review = reviewRepository.getReferenceById(reviewId);
 		ReviewEditForm reviewEditForm = new ReviewEditForm(review.getId(), review.getRating(), review.getComment());
 		
@@ -74,7 +78,7 @@ public class ReviewController {
 	}
 	
 	@PostMapping("/{reviewId}/update")
-	public String update(@PathVariable(name = "houseId") Integer houseId, @PathVariable(name = "reviewId") Integer reviewId, @ModelAttribute @Validated ReviewEditForm reviewEditForm, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+	public String update(Integer houseId, @PathVariable(name = "reviewId") Integer reviewId, @ModelAttribute @Validated ReviewEditForm reviewEditForm, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 		if (bindingResult.hasErrors()) {
 			return "/reviews/edit";
 		}
@@ -86,7 +90,7 @@ public class ReviewController {
 	}
 
 	@PostMapping("/{reviewId}/delete")
-	public String delete(@PathVariable(name = "houseId") Integer houseId, @PathVariable(name = "reviewId") Integer reviewId, RedirectAttributes redirectAttributes) {
+	public String delete(@PathVariable(name = "reviewId") Integer reviewId, RedirectAttributes redirectAttributes) {
 		reviewRepository.deleteById(reviewId);
 		
 		redirectAttributes.addFlashAttribute("successMessage", "レビューを削除しました。");

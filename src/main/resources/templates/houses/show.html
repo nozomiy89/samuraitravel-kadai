@@ -150,7 +150,7 @@
 					 </div>
 					 <h2 class="text-center mb-3">レビュー</h2>
 					 <div sec:authorize="isAuthenticated()" th:if="${hasNotReview}" class="mx-auto mb-3" style="width: 200px;">
-						 <a th:href="@{reviews/register}" class="btn text-white shadow-sm w-100 samuraitravel-btn">レビューを投稿する</a>
+						 <a th:href="@{/houses/__${house.getId()}__/reviews/register}" class="btn text-white shadow-sm w-100 samuraitravel-btn">レビューを投稿する</a>
 					</div>
 					 <div class="row row-cols-md-2 row-cols-1 g-3 mb-5">                                        
 						 <div class="col" th:each="review : ${latestReviews}">
@@ -170,7 +170,7 @@
 									<div sec:authorize="isAuthenticated()" th:if="${#authentication.principal.user.id == review.getUser().getId()}" th:remove="tag">
 										<div class="position-absolute top-0 end-0 p-2">
 											<a th:href="@{/reviews/edit}" class="me-2">編集</a>
-											<a href="#" class="samuraitravel-link-danger" data-bs-toggle="modal" th:data-bs-target="${'deleteReviewModal' + review.getId()}">削除</a>
+											<a href="#" class="samuraitravel-link-danger" data-bs-toggle="modal" th:data-bs-target="${'#deleteReviewModal' + review.getId()}">削除</a>
 											
 											<!-- 削除用モーダル -->
 											<div class="modal fade" th:id="${'deleteReviewModal' + review.getId()}" tabindex="-1" th:aria-labelledby="${'deleteReviewModalLabel' + review.getId()}">
@@ -181,7 +181,7 @@
 															<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
 														</div>
 														<div class="modal-footer">
-															<form method="post" th:action="@{/reviews/__${review.getId()}__/delete}">
+															<form method="post" th:action="@{/houses/__${house.getId()}__/reviews/__${review.getId()}__/delete}">
 																<button type="submit" class="btn samuraitravel-btn-danger text-white shadow-sm">削除</button>
 															</form>
 														</div>

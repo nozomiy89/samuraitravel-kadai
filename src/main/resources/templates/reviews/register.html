@@ -27,7 +27,7 @@
 							
 							<h1 class="mb-4 text-center"　th:text="${house.getName()}">のレビュー投稿</h1>
 							
-							<form method="post" th:action="@{/houses/${house.getId()}/reviews/create}" th:object="${reviewRegisterForm}" enctype="multipart/form-data">
+							<form method="post" th:action="@{/houses/__${house.getId()}__/reviews/create}" th:object="${reviewRegisterForm}" enctype="multipart/form-data">
 								<div class="form-group row mb-3">
 									<div class="col-md-4">
 										<label for="rating" class="col-form-label text-md-left fw-bold">評価</label>
@@ -53,6 +53,10 @@
 										<div th:if="${#fields.hasErrors('comment')}" class="text-danger small mb-2" th:errors="*{comment}"></div>
 										<textarea class="form-control" th:field="*{comment}" cols="30" rows="5"></textarea>
 									</div>
+								</div>
+								
+								<div class="form-group d-flex justify-content-center my-4">
+									<button type="submit" class="btn text-white shadow-sm w-50 samuraitravel-btn">登録</button>
 								</div>
 								
 							</form>
