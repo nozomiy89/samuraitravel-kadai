@@ -58,8 +58,8 @@ public class ReviewController {
 		return "redirect:/houses/{houseId}";
 	}
 	
-	@GetMapping("/edit")
-	public String editReview(@PathVariable(name = "houseId") Integer houseId, Integer reviewId, @ModelAttribute @Validated ReviewRegisterForm reviewRegisterForm, Model model) {
+	@GetMapping("/{reviewId}/edit")
+	public String editReview(@PathVariable(name = "houseId") Integer houseId, @PathVariable(name = "reviewId") Integer reviewId, @ModelAttribute @Validated ReviewRegisterForm reviewRegisterForm, Model model) {
 		Review review = reviewRepository.getReferenceById(reviewId);
 		ReviewEditForm reviewEditForm = new ReviewEditForm(review.getId(), review.getRating(),review.getComment());
 		House house = houseRepository.getReferenceById(houseId);

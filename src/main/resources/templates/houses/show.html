@@ -169,7 +169,7 @@
 									
 									<div sec:authorize="isAuthenticated()" th:if="${#authentication.principal.user.id == review.getUser().getId()}" th:remove="tag">
 										<div class="position-absolute top-0 end-0 p-2">
-											<a th:href="@{/houses/__${house.getId()}__/reviews/edit}" class="me-2">編集</a>
+											<a th:href="@{/houses/__${house.getId()}__/reviews/__${review.getId()}__/edit}" class="me-2">編集</a>
 											<a href="#" class="samuraitravel-link-danger" data-bs-toggle="modal" th:data-bs-target="${'#deleteReviewModal' + review.getId()}">削除</a>
 											
 											<!-- 削除用モーダル -->
