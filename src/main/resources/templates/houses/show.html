@@ -169,7 +169,7 @@
 									
 									<div sec:authorize="isAuthenticated()" th:if="${#authentication.principal.user.id == review.getUser().getId()}" th:remove="tag">
 										<div class="position-absolute top-0 end-0 p-2">
-											<a th:href="@{/reviews/edit}" class="me-2">編集</a>
+											<a th:href="@{/houses/__${house.getId()}__/reviews/edit}" class="me-2">編集</a>
 											<a href="#" class="samuraitravel-link-danger" data-bs-toggle="modal" th:data-bs-target="${'#deleteReviewModal' + review.getId()}">削除</a>
 											
 											<!-- 削除用モーダル -->
@@ -177,7 +177,7 @@
 												<div class="modal-dialog">
 													<div class="modal-content">
 														<div class="modal-header">
-															<h5 class="modal-title" th:id="${'deleteReviewModalLabel' + review.getId()}" th:text="${house.getId() + 'のレビューを削除してもよろしいですか？'}"></h5>
+															<h5 class="modal-title" th:id="${'deleteReviewModalLabel' + review.getId()}" th:text="${house.getName() + 'のレビューを削除してもよろしいですか？'}"></h5>
 															<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
 														</div>
 														<div class="modal-footer">

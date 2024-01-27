@@ -49,10 +49,4 @@ public class ReviewService {
 		reviewRepository.save(review);
 	}
 	
-	/*
-	@Transactional
-	public void delete(Integer reviewId) {
-		reviewRepository.deleteById(reviewId);
-	}
-	*/
 }

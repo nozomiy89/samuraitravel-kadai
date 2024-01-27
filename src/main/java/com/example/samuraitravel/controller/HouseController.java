@@ -92,4 +92,15 @@ public class HouseController {
     	 
     	 return "houses/show";
      }
+     
+     @GetMapping("/{id}/index")
+     public String index(Model model, @PathVariable(name = "houseId") Integer houseId, @PageableDefault(page = 0, size = 10, sort = "createdAt", direction = Direction.DESC) Pageable pageable) {
+ 		House house = houseRepository.getReferenceById(houseId);
+ 		Page<Review> reviewPage = reviewRepository.findAllByHouseOrderByCreatedAtDesc(house, pageable);
+ 		
+ 		model.addAttribute("house", house);
+ 		model.addAttribute("reviewPage", reviewPage);
+ 		
+ 		return "reviews/index";
+ 	}
 }
