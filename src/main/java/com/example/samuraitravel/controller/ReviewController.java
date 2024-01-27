@@ -61,7 +61,7 @@ public class ReviewController {
 	@GetMapping("/edit")
 	public String editReview(@PathVariable(name = "houseId") Integer houseId, Integer reviewId, @ModelAttribute @Validated ReviewRegisterForm reviewRegisterForm, Model model) {
 		Review review = reviewRepository.getReferenceById(reviewId);
-		ReviewEditForm reviewEditForm = new ReviewEditForm(review.getRating(),review.getComment());
+		ReviewEditForm reviewEditForm = new ReviewEditForm(review.getId(), review.getRating(),review.getComment());
 		House house = houseRepository.getReferenceById(houseId);
 		
 		model.addAttribute("house", house);

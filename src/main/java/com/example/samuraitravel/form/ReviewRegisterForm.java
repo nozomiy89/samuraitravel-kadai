@@ -10,6 +10,8 @@ import lombok.Data;
 public class ReviewRegisterForm {
 	private Integer userId;
 	
+	private Integer houseId;
+	
 	@NotNull(message = "評価を選択してください。")
 	@Min(value = 1, message = "評価は1以上を設定してください。")
 	@Max(value = 5, message = "評価は5以下を設定してください。")

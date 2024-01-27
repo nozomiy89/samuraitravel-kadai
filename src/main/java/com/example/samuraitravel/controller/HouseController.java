@@ -101,6 +101,7 @@ public class HouseController {
  		model.addAttribute("house", house);
  		model.addAttribute("reviewPage", reviewPage);
  		
- 		return "reviews/index";
+ 		return "redirect:/reviews/index";
  	}
+  
 }
