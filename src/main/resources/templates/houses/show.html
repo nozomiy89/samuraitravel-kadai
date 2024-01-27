@@ -197,7 +197,7 @@
 					
 					<div th:if="${reviewCount > 6}" class="d-flex justify-content-center align-items-center mb-3">
 						<div>
-							<a class="col-4">すべてのレビューを見る</a>
+							<a th:href="@{/houses/__${house.getId()}__/reviews/index}" class="col-4">すべてのレビューを見る</a>
 						</div>
 					</div>
 					<div th:if="${reviewCount == 0}" class="d-flex justify-content-center align-items-center mb-3">
